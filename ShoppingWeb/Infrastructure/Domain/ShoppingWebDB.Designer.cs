@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace ShoppingWeb.Infrastructure.Domain
 {
     #region Contexts
@@ -98,6 +98,7 @@ namespace ShoppingWeb.Infrastructure.Domain
         private ObjectSet<User> _Users;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -117,11 +118,11 @@ namespace ShoppingWeb.Infrastructure.Domain
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -146,6 +147,7 @@ namespace ShoppingWeb.Infrastructure.Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -248,6 +250,7 @@ namespace ShoppingWeb.Infrastructure.Domain
         partial void OnPhotoChanged();
 
         #endregion
+
     
     }
     
@@ -279,6 +282,7 @@ namespace ShoppingWeb.Infrastructure.Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -381,9 +385,11 @@ namespace ShoppingWeb.Infrastructure.Domain
         partial void OnPointChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

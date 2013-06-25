@@ -8,12 +8,17 @@ namespace ShoppingWeb.Infrastructure
 {
     public class ProductService
     {
-        public IEnumerable<Product> AllProduct()
+        private IProductRepository _productRepository;
+
+        public IProductRepository ProductRepository
         {
-            using (var context = new ShoppingWebDBEntities())
-            {
-                return context.Products.ToArray();
-            }
+            get { return _productRepository ?? (_productRepository = new ProductRepository()); }
+            set { _productRepository = value; }
+        }       
+
+        public IEnumerable<Product> AllProducts()
+        {
+            return ProductRepository.AllProducts();
         }
     }
 }

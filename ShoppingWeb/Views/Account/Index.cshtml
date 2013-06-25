@@ -1,0 +1,23 @@
+﻿@model ShoppingWeb.Models.LoginModel
+
+
+@section body {    
+    <div class="row">
+        <div class="span4 offset4 text-center">
+            @Html.ValidationMessage("InvalidLogin")
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6 offset3">
+            <div class="well">
+                <h2>
+                    Sign in</h2>
+                @using (Html.BeginForm("Index", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+                {
+                    @Html.EditorForModel();
+                    @Html.ActionLink("Create new Account", "New")                                        
+                }
+            </div>
+        </div>       
+    </div>
+}

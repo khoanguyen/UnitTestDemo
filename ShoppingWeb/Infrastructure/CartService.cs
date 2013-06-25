@@ -11,7 +11,23 @@ namespace ShoppingWeb.Infrastructure
     public class CartService
     {
         public const string CartKey = "cart";
-        
+
+        private HttpSessionState _session;
+
+        public HttpSessionState Session
+        {
+            get { return _session ?? (_session = HttpContext.Current.Session); }
+            set { _session = value; }
+        }
+
+        private IUserRepository _userRepository;
+
+        public IUserRepository UserRepository
+        {
+            get { return _userRepository ?? (_userRepository = new UserRepository()); }
+            set { _userRepository = value; }
+        }  
+
         public int AddToCart(int productId)
         {
             using (var context = new ShoppingWebDBEntities())
@@ -41,17 +57,10 @@ namespace ShoppingWeb.Infrastructure
                 };
         }
 
-        public void CalculateCart(CartModel cart, User customer)
+        private Dictionary<int, CartItem> GetCartFromSession()
         {
-            cart.SubTotal = cart.CartItems.Sum(item => item.ItemTotal);
-
-        }
-
-        private static Dictionary<int, CartItem> GetCartFromSession()
-        {
-            var session = HttpContext.Current.Session;
-            session[CartKey] = session[CartKey] ?? new Dictionary<int, CartItem>();
-            return (Dictionary<int, CartItem>)session[CartKey];
+            Session[CartKey] = Session[CartKey] ?? new Dictionary<int, CartItem>();
+            return (Dictionary<int, CartItem>)Session[CartKey];
         }
     }
 }

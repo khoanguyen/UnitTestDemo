@@ -1,0 +1,9 @@
+﻿@model ShoppingWeb.Models.LoginModel
+
+@Html.ValidationMessageFor(m => m.UserName)<br/>
+@Html.TextBoxFor(m => m.UserName, new { placeholder = "UserName" })
+@Html.ValidationMessageFor(m => m.Password)<br/>
+@Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+
+<br />
+<button class="btn btn-primary">Login</button>

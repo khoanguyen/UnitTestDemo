@@ -1,0 +1,19 @@
+﻿@model ShoppingWeb.Models.NewAccountModel
+@section body {
+     <div class="row">
+        <div class="span4 offset4 text-center">
+            @Html.ValidationMessage("NewUserError")
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6 offset3">
+            <div class="well">
+                <h2>Create New Account</h2>
+                @using (Html.BeginForm("New", "Account", FormMethod.Post))
+                {
+                    @Html.EditorForModel();
+                }
+            </div>
+        </div>
+    </div>
+}
