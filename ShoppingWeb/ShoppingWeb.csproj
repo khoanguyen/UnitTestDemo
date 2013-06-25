@@ -283,6 +283,7 @@
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Home\DisplayTemplates\Product.cshtml" />
     <Content Include="Views\Home\CheckCart.cshtml" />
+    <Content Include="Views\Home\DisplayTemplates\CartItem.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

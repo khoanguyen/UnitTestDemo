@@ -9,6 +9,19 @@ namespace ShoppingWeb.Models
     public class CartItem
     {
         public Product Product { get; set; }
-        public int Quantity { get; set; }
+
+        private int _quantity;
+
+        public int Quantity 
+        {
+            get { return _quantity; }
+            set
+            {
+                _quantity = value;
+                if (Product.Price != null) ItemTotal = _quantity*Product.Price.Value;
+            }
+        }
+
+        public decimal ItemTotal { get; private set; }
     }
 }

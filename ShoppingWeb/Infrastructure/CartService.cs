@@ -10,7 +10,7 @@ namespace ShoppingWeb.Infrastructure
 {
     public class CartService
     {
-        public const string CartKey = "cart";            
+        public const string CartKey = "cart";
         
         public int AddToCart(int productId)
         {
@@ -39,6 +39,12 @@ namespace ShoppingWeb.Infrastructure
                 {
                     CartItems = GetCartFromSession().Select(kp => kp.Value)
                 };
+        }
+
+        public void CalculateCart(CartModel cart, User customer)
+        {
+            cart.SubTotal = cart.CartItems.Sum(item => item.ItemTotal);
+
         }
 
         private static Dictionary<int, CartItem> GetCartFromSession()

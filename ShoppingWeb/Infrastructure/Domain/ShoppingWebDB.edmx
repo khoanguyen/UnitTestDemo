@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShoppingWebDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ShoppingWebDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ShoppingWebDBModelStoreContainer">
           <EntitySet Name="Products" EntityType="ShoppingWebDBModel.Store.Products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="ShoppingWebDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="Products">
           <Key>
@@ -17,13 +18,22 @@
           <Property Name="Price" Type="decimal" Scale="2" />
           <Property Name="Photo" Type="varchar" MaxLength="255" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Point" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoppingWebDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ShoppingWebDBEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Products" EntityType="ShoppingWebDBModel.Product" />
+          <EntitySet Name="Users" EntityType="ShoppingWebDBModel.User" />
         </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -33,6 +43,15 @@
           <Property Name="ProductName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Photo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Point" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -47,6 +66,16 @@
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ShoppingWebDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -72,6 +101,7 @@
     <Diagrams>
       <Diagram Name="ShoppingWebDB">
         <EntityTypeShape EntityType="ShoppingWebDBModel.Product" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingWebDBModel.User" Width="1.5" PointX="3.375" PointY="0.75" Height="1.7879850260416674" />
       </Diagram>
     </Diagrams>
   </Designer>
