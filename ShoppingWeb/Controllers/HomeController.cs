@@ -24,7 +24,7 @@ namespace ShoppingWeb.Controllers
 
         public ActionResult CheckCart()
         {
-            var service = new CartService();
+            CartService service = new CartService();
             return View(service.GetCart());
         }
 

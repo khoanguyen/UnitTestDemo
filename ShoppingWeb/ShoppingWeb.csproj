@@ -297,6 +297,7 @@
     <Content Include="Views\Account\EditorTemplates\LoginModel.cshtml" />
     <Content Include="Views\Account\EditorTemplates\NewAccountModel.cshtml" />
     <Content Include="Views\Account\New.cshtml" />
+    <Content Include="Views\Home\DisplayTemplates\CartItem.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
