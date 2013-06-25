@@ -1,0 +1,56 @@
+﻿@using System.Linq
+@using ShoppingWeb.Infrastructure
+@using ShoppingWeb.Models
+@helper CountCartItem()
+    {
+    if (@Session[CartService.CartKey] != null)
+    {
+        var cart = (Dictionary<int, CartItem>)@Session[CartService.CartKey];
+        var itemCount = cart.Sum(kp => kp.Value.Quantity);
+        <text> @itemCount item@(itemCount > 1 ? "s" : "") in Cart </text> 
+    }
+    else
+    {
+        <text> 0 item in Cart</text>
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Shoot 'em up</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="/">Shoot 'em up</a> 
+            <div class="pull-right">
+                <div id="cartInfo">@CountCartItem()</div> 
+                <a href="@Url.Action("CheckCart", "Home")">Check your Cart</a>   
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        @RenderSection("body", true)
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    
+    <script type="text/javascript">
+        function UpdateCart(amount)
+        {
+            if (amount > 1) {
+                $(".navbar #cartInfo").text(amount + " items in Cart");
+            } else {
+                $(".navbar #cartInfo").text(amount + " item in Cart");
+            }
+        }
+    </script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>

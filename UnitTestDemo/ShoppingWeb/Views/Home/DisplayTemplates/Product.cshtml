@@ -1,0 +1,9 @@
+﻿@model ShoppingWeb.Infrastructure.Domain.Product
+<div class="gun-item-div">
+    <div class="gun-image-div">
+        <img src="~/Content/images/guns/@Model.Photo" alt=""/>
+    </div>
+    <span class="gun-name">@Model.ProductName</span>
+    <span class="gun-price">$@Model.Price</span>
+    <button class="btn btn-primary" data-productid="@Model.ProductId">Add to Cart</button>
+</div>

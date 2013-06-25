@@ -1,0 +1,37 @@
+﻿@using ShoppingWeb.Infrastructure.Domain
+@model IEnumerable<Product>
+<script src="../../Scripts/jquery-2.0.2.js" type="text/javascript"></script>
+@{
+    ViewBag.Title = "Home";
+}
+
+@section body {
+    @for (var i = 0; i < Model.Count(); i++)
+    {
+        if (i%3 == 0)
+        {
+            if (i > 0)
+            {
+                @:</div >
+            }
+            <div class="row" />
+        }
+        <div class="span4">@Html.DisplayFor(m=> m.ToArray()[i])</div>
+    }
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".gun-item-div .btn").click(function () {
+                $.post('@Url.Action("AddToCart")',
+                    {
+                        productId: $(this).data("productid")
+                    },
+                    function (message) {
+                        if (window.UpdateCart) window.UpdateCart(message);
+                    });
+            });
+        });
+    </script>
+}
