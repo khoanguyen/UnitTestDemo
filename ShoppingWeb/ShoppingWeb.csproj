@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
@@ -129,20 +130,29 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AccountService.cs" />
     <Compile Include="Infrastructure\CartService.cs" />
+    <Compile Include="Infrastructure\Domain\IProductRepository.cs" />
+    <Compile Include="Infrastructure\Domain\IUserRepository.cs" />
+    <Compile Include="Infrastructure\Domain\ProductRepository.cs" />
     <Compile Include="Infrastructure\Domain\ShoppingWebDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ShoppingWebDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Domain\ShoppingWebDBEntities.cs" />
+    <Compile Include="Infrastructure\Domain\UserRepository.cs" />
     <Compile Include="Infrastructure\ProductService.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\NewAccountModel.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
     <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
@@ -283,6 +293,10 @@
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Home\DisplayTemplates\Product.cshtml" />
     <Content Include="Views\Home\CheckCart.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\EditorTemplates\LoginModel.cshtml" />
+    <Content Include="Views\Account\EditorTemplates\NewAccountModel.cshtml" />
+    <Content Include="Views\Account\New.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,10 @@
+﻿@model ShoppingWeb.Models.NewAccountModel
+
+@Html.ValidationMessageFor(m => m.UserName) <br/>
+@Html.TextBoxFor(m => m.UserName, new { placeholder = "UserName" })
+@Html.ValidationMessageFor(m => m.Password) <br/>
+@Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+@Html.ValidationMessageFor(m => m.ConfirmPassword) <br/>
+@Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password" })
+<br/>
+<button class="btn btn-primary">Create</button>

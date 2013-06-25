@@ -8,11 +8,11 @@ namespace ShoppingWeb.Infrastructure.Domain
 {
     public partial class ShoppingWebDBEntities
     {
-        public void Add<TEntity>(TEntity entity)
-            where TEntity : class
-        {
-            CreateObjectSet<TEntity>().AddObject(entity);
-        }
+        //public void Add<TEntity>(TEntity entity)
+        //    where TEntity : class
+        //{
+        //    CreateObjectSet<TEntity>().AddObject(entity);
+        //}
 
         public void Update<TEntity>(TEntity entity)
             where TEntity : class

@@ -9,6 +9,7 @@ using ShoppingWeb.Models;
 
 namespace ShoppingWeb.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         
@@ -18,7 +19,7 @@ namespace ShoppingWeb.Controllers
         public ActionResult Index()
         {
             var service = new ProductService();
-            return View(service.AllProduct());
+            return View(service.AllProducts());
         }
 
         public ActionResult CheckCart()

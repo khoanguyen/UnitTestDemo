@@ -28,11 +28,13 @@
     <div class="navbar">
         <div class="navbar-inner">
             <a class="brand" href="/">Shoot 'em up</a> 
-            <div class="pull-right">
-                <div id="cartInfo">@CountCartItem()</div> 
-                <a href="@Url.Action("CheckCart", "Home")">Check your Cart</a>   
-            </div>
-            
+            @if (Request.IsAuthenticated)
+            {
+                <div class="pull-right">
+                    <div id="cartInfo">@CountCartItem()</div> 
+                    <a href="@Url.Action("CheckCart", "Home")">Check your Cart</a>   
+                </div>
+            }
         </div>
     </div>
     <div class="container">
