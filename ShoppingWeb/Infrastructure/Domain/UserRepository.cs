@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace ShoppingWeb.Infrastructure.Domain
 {
@@ -6,6 +7,9 @@ namespace ShoppingWeb.Infrastructure.Domain
     {
         public User FindByUserName(string userName)
         {
+            if (userName == null)
+                throw new NullReferenceException();
+
             using (var context = new ShoppingWebDBEntities())
             {
                 return context.Users.SingleOrDefault(u => u.UserName == userName);
