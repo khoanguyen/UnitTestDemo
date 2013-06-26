@@ -31,7 +31,7 @@ namespace ShoppingWeb.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(loginModel.UserName, false);
                     Session["username"] = loginModel.UserName;
-                    return Redirect(Request.QueryString["ReturnUrl"]);
+                    return Request.QueryString[""] != null ? Redirect(Request.QueryString["ReturnUrl"]) : Redirect("~/");
                 }
                 ModelState.AddModelError("InvalidLogin","Invalid Login");
             }

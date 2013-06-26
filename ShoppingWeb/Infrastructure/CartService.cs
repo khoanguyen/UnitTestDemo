@@ -51,10 +51,34 @@ namespace ShoppingWeb.Infrastructure
         public CartModel GetCart()
         {
             // TODO : Calculate CartModel's SubTotal, Total, Discount
-            return new CartModel
-                {
-                    CartItems = GetCartFromSession().Select(kp => kp.Value)
-                };
+            CartModel cart = new CartModel
+                                    {
+                                        CartItems = GetCartFromSession().Select(kp => kp.Value)
+                                    };
+            cart.SubTotal = cart.CartItems.Sum(item => item.ItemTotal);
+            var accPoint = new AccountService().UserRepository.FindByUserName((string)Session["username"]).Point;
+            cart.Total = CalculateOrder(accPoint, cart.SubTotal);
+            //cart.Discount = (decimal) (accPoint > 200
+            //                               ? 0.15
+            //                               : accPoint >= 100
+            //                                     ? 0.1
+            //                                     : accPoint >= 50
+            //                                           ? 0.05
+            //                                           : 0);
+            //cart.Total = cart.SubTotal*(1 - cart.Discount);
+            return cart;
+        }
+
+        private decimal CalculateOrder(int accPoint, decimal orderTotal)
+        {
+            decimal discount = (decimal) (accPoint > 200
+                                           ? 0.15
+                                           : accPoint >= 100
+                                                 ? 0.1
+                                                 : accPoint >= 50
+                                                       ? 0.05
+                                                       : 0);
+            return orderTotal*(1 - discount);
         }
 
         private Dictionary<int, CartItem> GetCartFromSession()

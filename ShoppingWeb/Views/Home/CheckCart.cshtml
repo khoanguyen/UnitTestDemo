@@ -6,20 +6,32 @@
 
 @section body{
     <div class="span12 well">
-            <div class="row-fluid">
-                <div class="span4"><h3>Items</h3></div>
-                <div class="span2"><h3>Price</h3></div>
-                <div class="span2"><h3>QTY</h3></div>
-                <div class="span4"><h3>Item Total</h3></div>
-            </div>
-            @for(int i = 0; i < Model.CartItems.Count(); i++)
-            {
-                @Html.DisplayFor(item => item.CartItems.ToArray()[i])
-            }
-            <div class="row-fluid">
-                <div class="span8 right">SubTotal</div>
-                <div class="span12"></div>
-            </div>
+        <div class="row-fluid">
+            <div class="span12"><h3 class="caption">Your cart</h3></div>
         </div>
+        <div class="row-fluid">
+            <div class="span4"><h3>Items</h3></div>
+            <div class="span2"><h3>Price</h3></div>
+            <div class="span2"><h3>QTY</h3></div>
+            <div class="span4"><h3>Item Total</h3></div>
+        </div>
+        @for(int i = 0; i < Model.CartItems.Count(); i++)
+        {
+            @Html.DisplayFor(item => item.CartItems.ToArray()[i])
+        }
+        <div style="clear: both; height: 10px"></div>
+        <div class="row-fluid">
+            <div class="span8 right"><span class="text-right bold-face">SubTotal</span></div>
+            <div class="span4">$@Model.SubTotal</div>
+        </div>
+        <div class="row-fluid">
+            <div class="span8 right"><span class="text-right bold-face">Discount</span></div>
+            <div class="span4">% @Model.Discount</div>
+        </div>
+        <div class="row-fluid">
+            <div class="span8 right"><span class="text-right bold-face">Total</span></div>
+            <div class="span4">$@Model.Total</div>
+        </div>
+    </div>
 }
 
