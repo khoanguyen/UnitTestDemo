@@ -4,7 +4,7 @@ using ShoppingWeb.Infrastructure;
 namespace ShoppingWeb.Controllers
 {
     [Authorize]
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         //
         // GET: /Home/
@@ -19,6 +19,14 @@ namespace ShoppingWeb.Controllers
         {
             CartService service = new CartService();
             return View(service.GetCart());
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult ClearCart()
+        {
+            var service = new CartService();
+            service.ClearCart();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

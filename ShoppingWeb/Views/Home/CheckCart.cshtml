@@ -33,5 +33,16 @@
             <div class="span4">$@Model.Total</div>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="span12">
+            @using (Html.BeginForm("ClearCart", "Home", FormMethod.Post))
+            {
+                <button class="btn btn-primary">
+                    Clear Cart
+                </button>
+            }
+        </div>
+    </div>
 }
 
