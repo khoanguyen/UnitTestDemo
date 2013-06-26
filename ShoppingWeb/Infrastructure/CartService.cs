@@ -10,8 +10,6 @@ namespace ShoppingWeb.Infrastructure
 {
     public class CartService
     {
-        public const string CartKey = "cart";
-
         private HttpSessionState _session;
 
         public HttpSessionState Session
@@ -50,13 +48,12 @@ namespace ShoppingWeb.Infrastructure
 
         public CartModel GetCart()
         {
-            // TODO : Calculate CartModel's SubTotal, Total, Discount
             CartModel cart = new CartModel
                                     {
                                         CartItems = GetCartFromSession().Select(kp => kp.Value)
                                     };
             cart.SubTotal = cart.CartItems.Sum(item => item.ItemTotal);
-            var accPoint = new AccountService().UserRepository.FindByUserName((string)Session["username"]).Point;
+            var accPoint = new AccountService().UserRepository.FindByUserName(HttpContext.Current.User.Identity.Name).Point;
             cart.Total = CalculateOrder(accPoint, cart.SubTotal);
             //cart.Discount = (decimal) (accPoint > 200
             //                               ? 0.15
@@ -67,6 +64,11 @@ namespace ShoppingWeb.Infrastructure
             //                                           : 0);
             //cart.Total = cart.SubTotal*(1 - cart.Discount);
             return cart;
+        }
+
+        public void ClearCart()
+        {
+            Session[Keys.CartKey] = new Dictionary<int, CartItem>(); 
         }
 
         private decimal CalculateOrder(int accPoint, decimal orderTotal)
@@ -83,8 +85,8 @@ namespace ShoppingWeb.Infrastructure
 
         private Dictionary<int, CartItem> GetCartFromSession()
         {
-            Session[CartKey] = Session[CartKey] ?? new Dictionary<int, CartItem>();
-            return (Dictionary<int, CartItem>)Session[CartKey];
+            Session[Keys.CartKey] = Session[Keys.CartKey] ?? new Dictionary<int, CartItem>();
+            return (Dictionary<int, CartItem>)Session[Keys.CartKey];
         }
     }
 }

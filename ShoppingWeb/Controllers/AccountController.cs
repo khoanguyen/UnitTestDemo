@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -25,13 +26,12 @@ namespace ShoppingWeb.Controllers
         public ActionResult Index(LoginModel loginModel)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 var service = new AccountService();
                 if (service.VerifyUser(loginModel))
                 {
                     FormsAuthentication.SetAuthCookie(loginModel.UserName, false);
-                    Session["username"] = loginModel.UserName;
-                    return Request.QueryString[""] != null ? Redirect(Request.QueryString["ReturnUrl"]) : Redirect("~/");
+                    return Redirect(Request.QueryString["ReturnUrl"] ?? "~/");
                 }
                 ModelState.AddModelError("InvalidLogin","Invalid Login");
             }
@@ -43,6 +43,15 @@ namespace ShoppingWeb.Controllers
         {
             if (Request.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View(new NewAccountModel());
+        }
+        
+        [HttpPost]
+        [Authorize]
+        public RedirectToRouteResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
 
         [ActionName("New")]

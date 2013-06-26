@@ -15,7 +15,7 @@
                 @using (Html.BeginForm("Index", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
                 {
                     @Html.EditorForModel();
-                    @Html.ActionLink("Create new Account", "New")                                        
+                    @: &nbsp;&nbsp;&nbsp;@Html.ActionLink("Create new Account", "New")                                        
                 }
             </div>
         </div>       

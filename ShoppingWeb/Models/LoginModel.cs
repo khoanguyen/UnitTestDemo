@@ -10,7 +10,7 @@ namespace ShoppingWeb.Models
     public class LoginModel
     {
         [DisplayName("UserName")]
-        [Required(ErrorMessage = "UserName is required")]
+        [Required(ErrorMessage = "UserName is required")]        
         public string UserName { get; set; }
 
         [DisplayName("Password")]

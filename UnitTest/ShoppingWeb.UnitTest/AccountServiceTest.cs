@@ -28,7 +28,7 @@ namespace ShoppingWeb.UnitTest
             
         }
 
-        private IEnumerable<object[]> GenerateVerifyUserTestCases()
+        private static IEnumerable<object[]> GenerateVerifyUserTestCases()
         {
             return new[]
                 {

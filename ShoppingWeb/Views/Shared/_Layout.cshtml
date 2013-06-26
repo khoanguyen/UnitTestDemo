@@ -3,16 +3,17 @@
 @using ShoppingWeb.Models
 @helper CountCartItem()
     {
-    if (@Session[CartService.CartKey] != null)
-    {
-        var cart = (Dictionary<int, CartItem>)@Session[CartService.CartKey];
-        var itemCount = cart.Sum(kp => kp.Value.Quantity);
-        <text> @itemCount item@(itemCount > 1 ? "s" : "") in Cart </text> 
-    }
-    else
-    {
-        <text> 0 item in Cart</text>
-    }
+        if (@Session[Keys.CartKey] != null)
+        {
+            var cart = (Dictionary<int, CartItem>)@Session[Keys.CartKey];
+            var itemCount = cart.Sum(kp => kp.Value.Quantity);
+    <text> @itemCount item@(itemCount > 1 ? "s" : "")
+    in Cart </text> 
+        }
+        else
+        {
+    <text> 0 item in Cart</text>
+        }
 }
 <!DOCTYPE html>
 <html>
@@ -27,12 +28,22 @@
 <body>
     <div class="navbar">
         <div class="navbar-inner">
-            <a class="brand" href="/">Shoot 'em up</a> 
+            <a class="brand" href="/">Shoot 'em up</a>
             @if (Request.IsAuthenticated)
             {
-                <div class="pull-right">
-                    <div id="cartInfo">@CountCartItem()</div> 
-                    <a href="@Url.Action("CheckCart", "Home")">Check your Cart</a>   
+                
+                <div class="navbar-div pull-right">                    
+                    @using (Html.BeginForm("Logout", "Account"))
+                    {
+                        <button class="btn btn-danger">Logout</button>
+                    }
+                </div>
+                <div class="pull-right navbar-div">
+                    <div id="cartInfo">@CountCartItem()</div>
+                    <a href="@Url.Action("CheckCart", "Home")">Check your Cart</a>
+                </div>
+                <div class="navbar-div pull-right">
+                    <span class="bold-face pull-left">@Context.User.Identity.Name</span>
                 </div>
             }
         </div>
@@ -41,10 +52,8 @@
         @RenderSection("body", true)
     </div>
     @Scripts.Render("~/bundles/jquery")
-    
     <script type="text/javascript">
-        function UpdateCart(amount)
-        {
+        function UpdateCart(amount) {
             if (amount > 1) {
                 $(".navbar #cartInfo").text(amount + " items in Cart");
             } else {
@@ -52,7 +61,6 @@
             }
         }
     </script>
-
     @RenderSection("scripts", false)
 </body>
 </html>

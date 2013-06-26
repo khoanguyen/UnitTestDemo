@@ -12,8 +12,9 @@ namespace ShoppingWeb.UnitTest.TestClasses
         private readonly List<User> _users = new List<User>()
             {
                 new User {UserId = 1, UserName = "Khoa", Point = 15000, Password = "password"},
-                new User {UserId = 2, UserName = "Quang", Point = 15000, Password = "password"},
-                new User {UserId = 3, UserName = "Tham", Point = 15000, Password = "password"},
+                new User {UserId = 2, UserName = "Quang", Point = 25000, Password = "password"},
+                new User {UserId = 3, UserName = "Tham", Point = 5000, Password = "password"},
+                new User {UserId = 4, UserName = "Khoi", Point = 0, Password = "password"},
             };
 
         public User FindByUserName(string userName)
