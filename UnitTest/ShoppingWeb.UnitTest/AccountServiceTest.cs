@@ -25,6 +25,11 @@ namespace ShoppingWeb.UnitTest
             
         }
 
+        public void TestAddNewUser()
+        {
+            
+        }
+
         private static IEnumerable<object[]> GenerateVerifyUserTestCases()
         {
             return new[]
