@@ -53,16 +53,8 @@ namespace ShoppingWeb.Infrastructure
                                         CartItems = GetCartFromSession().Select(kp => kp.Value)
                                     };
             cart.SubTotal = cart.CartItems.Sum(item => item.ItemTotal);
-            var accPoint = new AccountService().UserRepository.FindByUserName(HttpContext.Current.User.Identity.Name).Point;
-            cart.Total = CalculateOrder(accPoint, cart.SubTotal);
-            //cart.Discount = (decimal) (accPoint > 200
-            //                               ? 0.15
-            //                               : accPoint >= 100
-            //                                     ? 0.1
-            //                                     : accPoint >= 50
-            //                                           ? 0.05
-            //                                           : 0);
-            //cart.Total = cart.SubTotal*(1 - cart.Discount);
+            var user = new AccountService().UserRepository.FindByUserName(HttpContext.Current.User.Identity.Name);
+            CalculateOrder(user, cart);
             return cart;
         }
 
@@ -71,16 +63,16 @@ namespace ShoppingWeb.Infrastructure
             Session[Keys.CartKey] = new Dictionary<int, CartItem>(); 
         }
 
-        private decimal CalculateOrder(int accPoint, decimal orderTotal)
+        public void CalculateOrder(User user, CartModel cart)
         {
-            decimal discount = (decimal) (accPoint > 200
+            decimal discount = (decimal) (user.Point > 200
                                            ? 0.15
-                                           : accPoint >= 100
+                                           : user.Point >= 100
                                                  ? 0.1
-                                                 : accPoint >= 50
+                                                 : user.Point > 50
                                                        ? 0.05
                                                        : 0);
-            return orderTotal*(1 - discount);
+            cart.Total = cart.SubTotal*(1 - discount);
         }
 
         private Dictionary<int, CartItem> GetCartFromSession()
