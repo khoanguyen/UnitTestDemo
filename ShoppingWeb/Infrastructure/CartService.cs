@@ -63,7 +63,7 @@ namespace ShoppingWeb.Infrastructure
             Session[Keys.CartKey] = new Dictionary<int, CartItem>(); 
         }
 
-        private void CalculateOrder(User user, CartModel cart)
+        public void CalculateOrder(User user, CartModel cart)
         {
             decimal discount = (decimal) (user.Point > 200
                                            ? 0.15
