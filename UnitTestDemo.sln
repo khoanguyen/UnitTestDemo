@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F064EC
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShoppingWebDB", "ShoppingWebDB\ShoppingWebDB.sqlproj", "{AB301C9D-77A0-4317-9F71-647488EE0C8F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{015C5EF9-08CD-41B7-AC0E-CCE93136598A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingWeb.UnitTest", "UnitTest\ShoppingWeb.UnitTest\ShoppingWeb.UnitTest.csproj", "{6FA58F7E-CF4F-4777-9E1C-D4D084796F9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{AB301C9D-77A0-4317-9F71-647488EE0C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB301C9D-77A0-4317-9F71-647488EE0C8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB301C9D-77A0-4317-9F71-647488EE0C8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6FA58F7E-CF4F-4777-9E1C-D4D084796F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA58F7E-CF4F-4777-9E1C-D4D084796F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA58F7E-CF4F-4777-9E1C-D4D084796F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA58F7E-CF4F-4777-9E1C-D4D084796F9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6FA58F7E-CF4F-4777-9E1C-D4D084796F9C} = {015C5EF9-08CD-41B7-AC0E-CCE93136598A}
 	EndGlobalSection
 EndGlobal
