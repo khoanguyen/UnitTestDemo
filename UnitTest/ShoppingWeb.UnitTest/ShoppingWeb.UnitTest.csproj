@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartServiceTest.cs" />
     <Compile Include="ProductServiceTest.cs" />
     <Compile Include="TestClasses\EmptyFakeProductRepository.cs" />
     <Compile Include="TestClasses\FakeProductRepository.cs" />

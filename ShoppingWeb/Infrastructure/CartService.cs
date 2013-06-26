@@ -69,7 +69,7 @@ namespace ShoppingWeb.Infrastructure
             return cart;
         }
 
-        private decimal CalculateOrder(int accPoint, decimal orderTotal)
+        public decimal CalculateOrder(int accPoint, decimal orderTotal)
         {
             decimal discount = (decimal) (accPoint > 200
                                            ? 0.15
