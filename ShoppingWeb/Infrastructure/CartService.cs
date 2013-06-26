@@ -69,7 +69,7 @@ namespace ShoppingWeb.Infrastructure
                                            ? 0.15
                                            : user.Point >= 100
                                                  ? 0.1
-                                                 : user.Point >= 50
+                                                 : user.Point > 50
                                                        ? 0.05
                                                        : 0);
             cart.Total = cart.SubTotal*(1 - discount);

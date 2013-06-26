@@ -21,7 +21,7 @@ namespace ShoppingWeb.UnitTest
         public void CalculateOrderTest(string message, User user, CartModel cart, decimal expectedResult)
         {
             _cartService.CalculateOrder(user, cart);
-            Assert.AreEqual(cart.Total, expectedResult, message);
+            Assert.AreEqual(expectedResult, cart.Total, message);
         }
 
 
@@ -31,7 +31,7 @@ namespace ShoppingWeb.UnitTest
                        {
                            new object[]
                                {
-                                   "> 50 - no discount", new User {Password = "password", UserName = "tham.vo", Point = 25},
+                                   "< 50 - no discount", new User {Password = "password", UserName = "tham.vo", Point = 25},
                                    new CartModel {SubTotal = 10000}, new decimal(10000)
                                },
                            new object[]
